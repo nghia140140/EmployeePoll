@@ -10,15 +10,14 @@ const QuestionDetail = ({ authId, userReducer }) => {
   const { question } = location?.state;
 
   const answerQuestion = (option) => {
-    dispatch(saveQuestionAnswer({ authedUser: authId, qid: question?.id, answer: option }));
+    if (window.confirm("Select option")) {
+      dispatch(saveQuestionAnswer({ authedUser: authId, qid: question?.id, answer: option }));
+    }
   };
-
-  console.log("question", question);
 
   const avatarUrl = useMemo(() => {
     return userReducer[question.author]?.avatarURL;
   }, [question.author, userReducer]);
-  console.log("avatarUrl", avatarUrl, userReducer);
 
   return (
     <div className="container">

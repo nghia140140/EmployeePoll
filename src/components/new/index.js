@@ -20,7 +20,10 @@ const New = ({ authId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(saveQuestions({ optionOneText: optionOne, optionTwoText: optionTwo, author: authId }));
+    setOptionOne("");
+    setOptionTwo("");
   };
+
   return (
     <div className="container">
       <h2>Would You Rather</h2>
@@ -30,6 +33,7 @@ const New = ({ authId }) => {
           <h5>First Option</h5>
           <div className="input-option">
             <input
+              data-testid="option-one"
               value={optionOne}
               onChange={onChangeOptionOne}
               type="text"
@@ -43,6 +47,7 @@ const New = ({ authId }) => {
           <h5>Second Option</h5>
           <div className="input-option">
             <input
+              data-testid="option-two"
               value={optionTwo}
               onChange={onChangeOptionTwo}
               type="text"
@@ -52,7 +57,12 @@ const New = ({ authId }) => {
             ></input>
           </div>
         </div>
-        <button className="btnLogin" type="submit">
+        <button
+          data-testid="submit-button"
+          className="btnLogin"
+          type="submit"
+          disabled={!optionOne && !optionTwo}
+        >
           Submit
         </button>
       </form>

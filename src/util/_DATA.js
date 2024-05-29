@@ -189,7 +189,6 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
       reject("Please provide authedUser, qid, and answer");
     }
 
-    console.log("authedUser", authedUser, qid, answer);
     setTimeout(() => {
       users = {
         ...users,

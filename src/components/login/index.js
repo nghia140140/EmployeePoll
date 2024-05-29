@@ -1,11 +1,11 @@
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import "./login.css";
 import React, { useState } from "react";
 import { handleLogin } from "../../redux/middleware/thunk";
 import { useNavigate } from "react-router-dom";
 import { images } from "../../images";
 
-const LoginPage = () => {
+const LoginPage = ({ userReducer }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("mtsamis");
@@ -58,7 +58,7 @@ const LoginPage = () => {
             ></input>
           </div>
         </div>
-        <button className="btnLogin" type="submit">
+        <button className="btnLogin" type="submit" disabled={!userReducer?.length}>
           Submit
         </button>
       </form>
@@ -66,4 +66,8 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+const mapStateToProps = ({ userReducer }) => ({
+  userReducer: Object.values(userReducer)?.map((user) => user),
+});
+
+export default connect(mapStateToProps)(LoginPage);
