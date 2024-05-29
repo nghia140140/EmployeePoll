@@ -1,0 +1,60 @@
+.container {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+table {
+  width: 80%;
+  margin-left: 10%;
+  /* border: 1px solid; */
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+tr th {
+  background-color: #d3cfcfc7;
+  padding: 10px 5px;
+}
+
+div span {
+  font-size: 12px;
+}
+
+div p {
+  font-size: 18px;
+  margin: 0px;
+}
+
+td div {
+  display: flex;
+}
+
+td div .user-img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 100%;
+}
+
+div .user-img img {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+td div .user-info {
+  display: block;
+  margin-left: 10px;
+  height: 100%;
+}

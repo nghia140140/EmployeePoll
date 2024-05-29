@@ -1,0 +1,62 @@
+.container {
+  justify-content: center;
+  text-align: center;
+}
+
+.author-poll {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+img {
+  height: 300px;
+  width: 300px;
+  border-radius: 150px;
+}
+
+.option {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.option-one {
+  width: 40%;
+  margin: 0 20px;
+}
+
+.option-two {
+  width: 40%;
+  margin: 0 20px;
+}
+
+.content-question {
+  border: 1px solid;
+  border-width: 1px 1px 0px 1px;
+  border-radius: 4px 4px 0 0;
+}
+.content-question p {
+  margin: 0;
+  padding: 20px 0px;
+}
+
+.option-one button {
+  width: 100%;
+  background-color: #339966;
+  padding: 5px;
+  border-radius: 0 0 4px 4px;
+}
+
+.option-two button {
+  width: 100%;
+  background-color: #339966;
+  padding: 5px;
+  border-radius: 0 0 4px 4px;
+}
+
+.btn-click {
+  padding: 5px 0;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 800;
+}
