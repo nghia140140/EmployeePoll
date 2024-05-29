@@ -10,6 +10,7 @@ import { connect, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getQuestions, getUsers } from "./redux/middleware/thunk";
 import QuestionDetail from "./components/detailQuestion";
+import Protected from "./components/protected";
 
 function App({ authReducer }) {
   const dispatch = useDispatch();
@@ -24,11 +25,39 @@ function App({ authReducer }) {
       {!!authReducer && <Menu />}
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/question/:id" element={<QuestionDetail />} />
+        <Route
+          path="/home"
+          element={
+            <Protected>
+              <Home />
+            </Protected>
+          }
+        />
+        <Route
+          path="/question/:id"
+          element={
+            <Protected>
+              <QuestionDetail />
+            </Protected>
+          }
+        />
 
-        <Route path="/leader-board" element={<LeaderBoard />} />
-        <Route path="/new" element={<New />} />
+        <Route
+          path="/leaderboard"
+          element={
+            <Protected>
+              <LeaderBoard />
+            </Protected>
+          }
+        />
+        <Route
+          path="/add"
+          element={
+            <Protected>
+              <New />
+            </Protected>
+          }
+        />
       </Routes>
     </div>
   );

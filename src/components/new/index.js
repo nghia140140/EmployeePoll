@@ -3,8 +3,10 @@ import React from "react";
 import "./new.css";
 import { connect, useDispatch } from "react-redux";
 import { saveQuestions } from "../../redux/middleware/thunk";
+import { useNavigate } from "react-router-dom";
 
 const New = ({ authId }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
@@ -22,6 +24,7 @@ const New = ({ authId }) => {
     dispatch(saveQuestions({ optionOneText: optionOne, optionTwoText: optionTwo, author: authId }));
     setOptionOne("");
     setOptionTwo("");
+    navigate("/home");
   };
 
   return (

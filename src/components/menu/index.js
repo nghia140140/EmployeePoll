@@ -18,10 +18,10 @@ const Menu = ({ authReducer }) => {
         <Link to="/home" className="item">
           <span className="link-item">Home</span>
         </Link>
-        <Link to="/leader-board" className="item">
+        <Link to="/leaderboard" className="item">
           <span className="link-item">Leaderboard</span>
         </Link>
-        <Link to="/new" className="item">
+        <Link to="/add" className="item">
           <span className="link-item">New</span>
         </Link>
       </div>

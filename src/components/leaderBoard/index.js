@@ -13,7 +13,7 @@ const LeaderBoard = ({ userReducer }) => {
             <th>Created</th>
           </tr>
           {userReducer?.map((user) => (
-            <tr>
+            <tr key={user?.id}>
               <td className="group-user">
                 <div>
                   <div className="user-img">
@@ -36,7 +36,9 @@ const LeaderBoard = ({ userReducer }) => {
 };
 
 const mapStateToProps = ({ userReducer }) => ({
-  userReducer: Object.values(userReducer)?.map((user) => user),
+  userReducer: Object.values(userReducer)
+    ?.map((user) => user)
+    ?.sort((a, b) => Object.values(b?.answers)?.length - Object.values(a?.answers)?.length),
 });
 
 export default connect(mapStateToProps)(LeaderBoard);

@@ -1,10 +1,11 @@
 import { connect, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { saveQuestionAnswer } from "../../redux/middleware/thunk";
 import "./detail.css";
 import { useMemo } from "react";
 
 const QuestionDetail = ({ authId, userReducer }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const { question } = location?.state;
@@ -12,8 +13,17 @@ const QuestionDetail = ({ authId, userReducer }) => {
   const answerQuestion = (option) => {
     if (window.confirm("Select option")) {
       dispatch(saveQuestionAnswer({ authedUser: authId, qid: question?.id, answer: option }));
+      navigate(-1);
     }
   };
+
+  const userAnswer = useMemo(
+    () => ({
+      optionOne: question?.optionOne?.votes?.includes(authId) || false,
+      optionTwo: question?.optionTwo?.votes?.includes(authId) || false,
+    }),
+    [authId, question?.optionOne?.votes, question?.optionTwo?.votes]
+  );
 
   const avatarUrl = useMemo(() => {
     return userReducer[question.author]?.avatarURL;
@@ -30,8 +40,12 @@ const QuestionDetail = ({ authId, userReducer }) => {
           <div className="content-question">
             <p>{question?.optionOne?.text}</p>
           </div>
-          <button className="btn-click" onClick={() => answerQuestion("optionOne")}>
-            <p>Click</p>
+          <button
+            className="btn-click"
+            onClick={() => answerQuestion("optionOne")}
+            disabled={userAnswer?.optionOne}
+          >
+            <p>{userAnswer?.optionOne ? "Your Option" : "Click"}</p>
           </button>
         </div>
 
@@ -39,8 +53,12 @@ const QuestionDetail = ({ authId, userReducer }) => {
           <div className="content-question">
             <p>{question?.optionTwo?.text}</p>
           </div>
-          <button className="btn-click" onClick={() => answerQuestion("optionTwo")}>
-            <p>Click</p>
+          <button
+            className="btn-click"
+            onClick={() => answerQuestion("optionTwo")}
+            disabled={userAnswer?.optionTwo}
+          >
+            <p>{userAnswer?.optionTwo ? "Your Option" : "Click"}</p>
           </button>
         </div>
       </div>
